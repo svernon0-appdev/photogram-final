@@ -12,7 +12,7 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
-  belongs_to :user
+  belongs_to :poster, :class_name => "User", :foreign_key => "owner_id"
   has_many :comments
 
   validates :image, :presence => true

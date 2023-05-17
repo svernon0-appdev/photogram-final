@@ -45,3 +45,65 @@
 
   
 </ul>
+
+
+<h2>
+  Own photos (<%= @user.posts.count %>)
+</h2>
+
+<table border=1>
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th>
+      Likes
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @user.posts.order({ :likes_count => :desc }).each do |a_post| %>
+    <tr>
+      <td>
+        <img src="<%= a_post.image %>">
+      </td>
+
+      <td>
+        <%= a_post.poster.username %>
+      </td>
+
+      <td>
+        <%= a_post.caption %>
+      </td>
+
+      <td>
+        <%= a_post.created_at %>
+      </td>
+
+      <td>
+        <%= a_post.likes_count %>
+      </td>
+
+      <td>
+        <a href="photos/<%= a_post.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>

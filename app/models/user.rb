@@ -15,6 +15,8 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :comments
+  has_many :follow_requests
+  has_many :likes
 
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true

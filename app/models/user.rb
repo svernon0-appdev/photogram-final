@@ -14,6 +14,7 @@
 #
 class User < ApplicationRecord
   has_many :photos
+  has_many :comments
 
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true

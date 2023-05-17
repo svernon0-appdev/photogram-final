@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Routes for the User account:
 
+  # List all users
+  get("/users", { :controller => "users", :action => "index" })
+
   # SIGN UP FORM
   get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })        
   # CREATE RECORD

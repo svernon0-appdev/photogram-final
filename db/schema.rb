@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_05_17_144848) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "followrequests", force: :cascade do |t|
+  create_table "follow_requests", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "sender_id"
     t.string "status"

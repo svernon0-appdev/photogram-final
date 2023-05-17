@@ -15,7 +15,8 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :comments
-  has_many :follow_requests
+  has_many :requests_recieved, :class_name => "FollowRequest", :foreign_key => "recipient_id"
+  has_many :requests_sent, :class_name => "FollowRequest", :foreign_key => "sender_id"
   has_many :likes
 
   validates :email, :uniqueness => { :case_sensitive => false }

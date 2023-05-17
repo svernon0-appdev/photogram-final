@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    username = params.fetch(:route_username)
+
+    @user = User.where({ :username => username }).first
+
     render({ :template => "users/show.html.erb" })
   end
 

@@ -35,7 +35,6 @@
     <%= @following.count %>
 </dl>
 
-
 <ul>
   <li>
     <a href="/users/<%= @user.username %>">
@@ -62,9 +61,13 @@
   </li>
 </ul>
 
+<% posts_count = 0 %>
+<% @following.each do |a_followed_user| %>
+  <% posts_count += a_followed_user.follow_requestors.posts.count %>
+<% end %>
 
 <h2>
-  Own photos (<%= @user.posts.count %>)
+  Feed (<%= posts_count %>)
 </h2>
 
 <table border=1>
@@ -93,33 +96,35 @@
     </th>
   </tr>
 
-  <% @user.posts.order({ :likes_count => :desc }).each do |a_post| %>
-    <tr>
-      <td>
-        <img src="<%= a_post.image %>">
-      </td>
+  <% @following.each do |a_followed_user| %>
+    <% a_followed_user.follow_requestors.posts.each do |a_post| %>
+      <tr>
+        <td>
+          <img src="<%= a_post.image %>">
+        </td>
 
-      <td>
-        <%= a_post.poster.username %>
-      </td>
+        <td>
+          <%= a_post.poster.username %>
+        </td>
 
-      <td>
-        <%= a_post.caption %>
-      </td>
+        <td>
+          <%= a_post.caption %>
+        </td>
 
-      <td>
-        <%= a_post.created_at %>
-      </td>
+        <td>
+          <%= a_post.created_at %>
+        </td>
 
-      <td>
-        <%= a_post.likes_count %>
-      </td>
+        <td>
+          <%= a_post.likes_count %>
+        </td>
 
-      <td>
-        <a href="photos/<%= a_post.id %>">
-          Show details
-        </a>
-      </td>
-    </tr>
+        <td>
+          <a href="photos/<%= a_post.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
 </table>

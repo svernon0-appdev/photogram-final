@@ -14,6 +14,24 @@
   </dt>
     <dd>
       <%= @followers.count %>
+       <div>
+        <% if @current_user != nil %>
+            <% if @current_user.requests_sent.where({ :recipient_id => @user.id }).first == nil %>
+              <form action="/insert_follow_request" method="post">
+                <input type="hidden" name="query_recipient_id" value="93">
+
+                <button>
+                  Follow
+                </button>
+              </form>
+            
+            <% elsif @current_user.requests_sent.where({ :recipient_id => @user.id }).first.status == "accepted" %>
+              <a href="/delete_follow_request/<%= @current_user.requests_sent.where({ :recipient_id => @user.id }).first.id %>">
+                Unfollow
+              </a>
+            <% end %>
+          <% end %>
+        </div>
     </dd>
     <dd>
       <% if @current_user != nil %>

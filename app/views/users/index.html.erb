@@ -34,7 +34,15 @@
       </td>
 
       <td>
-        [[follow request]]
+        <% if @current_user != nil %>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" value="<%= a_user.id %>">
+
+            <button>
+              Follow
+            </button>
+          </form>
+        <% end %>
       </td>
 
       <td>

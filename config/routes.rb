@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
 
-   # List all users
-   get("/", { :controller => "users", :action => "index" })
+  # List all users
+  get("/", { :controller => "users", :action => "index" })
 
-   get("/users", { :controller => "users", :action => "index" })
+  get("/users", { :controller => "users", :action => "index" })
 
-   get("/users/:route_username", { :controller => "users", :action => "show" })
+  get("/users/:route_username", { :controller => "users", :action => "show" })
 
-   get("/users/:route_username/feed", { :controller => "users", :action => "feed" })
+  get("/users/:route_username/feed", { :controller => "users", :action => "feed" })
 
-   get("/users/:route_username/liked_photos", { :controller => "users", :action => "liked_photos" })
+  get("/users/:route_username/liked_photos", { :controller => "users", :action => "liked_photos" })
 
-   get("/users/:route_username/discover", { :controller => "users", :action => "discover" })
+  get("/users/:route_username/discover", { :controller => "users", :action => "discover" })
+
+
+  # Follow Request Routes
+  post("/insert_follow_request", { :controller => "follow_request", :action => "create" })
 
   # Routes for the Comment resource:
 

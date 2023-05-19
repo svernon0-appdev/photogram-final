@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
     @following = @user.requests_sent.where({ :status => 'accepted' })
 
-    render({ :template => "users/show.html.erb" })
+    if @current_user == nil
+      redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
+    else
+      render({ :template => "users/show.html.erb" })
+    end
   end
 
   def feed

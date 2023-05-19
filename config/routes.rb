@@ -25,11 +25,6 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })
-          
-  # READ
-  get("/comments", { :controller => "comments", :action => "index" })
-  
-  get("/comments/:path_id", { :controller => "comments", :action => "show" })
   
   # UPDATE
   

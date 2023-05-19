@@ -15,7 +15,8 @@ class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :poster, :class_name => "User", :foreign_key => "owner_id"
-  has_many :comments
+  has_many :comments, :foreign_key => "photo_id"
+  has_many :likes
 
   validates :image, :presence => true
 end

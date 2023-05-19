@@ -35,6 +35,12 @@ Rails.application.routes.draw do
 
   #------------------------------
 
+  # Routes for the Like resource:
+
+  post("/insert_like", { :controller => "likes", :action => "create" })
+
+  get("/delete_like/:path_id", { :controller => "likes", :action => "destroy" })
+
   # Routes for the Photo resource:
 
   # CREATE

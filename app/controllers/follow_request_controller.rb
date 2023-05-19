@@ -12,6 +12,19 @@ class FollowRequestController < ApplicationController
     end
   end
 
+  def update
+    the_id = params.fetch("path_id")
+    the_request = FollowRequest.where({ :id => the_id }).first
+
+    the_request.status = params.fetch("query_status")
+
+    if the_request.valid?
+      the_request.save
+      redirect_to("/users/#{@current_user.username}", { :notice => "Follow request #{the_request.status}." })
+    else
+      redirect_to("/users/#{@current_user.username}", { :alert => the_request.errors.full_messages.to_sentence })
+  end
+
   def destroy
     the_id = params.fetch("path_id")
     the_follow_request = FollowRequest.where({ :id => the_id }).at(0)

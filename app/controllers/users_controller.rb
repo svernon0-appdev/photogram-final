@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
     @user = User.where({ :username => username }).first
 
+    @follow_requests = @user.requests_recieved.where({ :status => 'pending' })
+
     @followers = @user.requests_recieved.where({ :status => 'accepted' })
 
     @following = @user.requests_sent.where({ :status => 'accepted' })

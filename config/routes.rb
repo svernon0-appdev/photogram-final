@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get("/delete_follow_request/:path_id", { :controller => "follow_request", :action => "destroy" })
 
+  post("/modify_follow_request/:path_id", { :controller => "follow_request", :action => "update" })
+
   # Routes for the Comment resource:
 
   # CREATE

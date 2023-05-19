@@ -16,7 +16,33 @@
       <%= @followers.count %>
        <div>
         <% if @current_user != nil %>
-            <% if @current_user.requests_sent.where({ :recipient_id => @user.id }).first == nil %>
+            <% if @current_user == @user %>
+              <h4>
+                Pending follow requests
+              </h4>
+              <ul>
+                <% @follow_requests.each do |a_request| %>
+                  <li>
+                    <%= a_request.sender.username %>
+
+                    <form action="/modify_follow_request/<%= a_request.id %>" method="post">
+                      <input name="query_status" value="accepted" type="hidden">
+
+                      <button>
+                        Accept
+                      </button>
+                    </form>
+
+                    <form action="/modify_follow_request/1815" method="post">
+                      <input name="query_status" value="rejected" type="hidden">
+                    
+                      <button>
+                        Reject
+                      </button>
+                    </form>
+                  </li>
+                <% end %>
+            <% elsif @current_user.requests_sent.where({ :recipient_id => @user.id }).first == nil %>
               <form action="/insert_follow_request" method="post">
                 <input type="hidden" name="query_recipient_id" value="93">
 

@@ -11,4 +11,13 @@ class FollowRequestController < ApplicationController
       redirect_to("/users", { :alert => follow_request.errors.full_messages.to_sentence })
     end
   end
+
+  def destroy
+    the_id = params.fetch("path_id")
+    the_follow_request = FollowRequest.where({ :id => the_id }).at(0)
+
+    the_follow_request.destroy
+
+    redirect_to("/users", { :notice => "User unfollowed."} )
+  end
 end

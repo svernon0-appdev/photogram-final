@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
     @the_photo = matching_photos.at(0)
 
     if @current_user == nil
-      redirect_to("/user_sign_in", { :notice => "Please sign in to view photos."})
+      redirect_to("/user_sign_in", { :notice => "You have to sign in first."})
     else
       render({ :template => "photos/show.html.erb" })
     end
